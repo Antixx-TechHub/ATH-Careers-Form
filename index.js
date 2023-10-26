@@ -22,52 +22,74 @@ app.use(bodyParser.json());
 
 
 // Nodemailer transporter setup
-const transporter = nodemailer.createTransport({
-  host: "mail.antixxtechhub.com",
-  port: 465,
-  secure: true,
-  auth: {
-    // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-    user: "careers@antixxtechhub.com",
-    pass: "2]6!NK{lo3SJ",
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   host: "mail.antixxtechhub.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+//     user: "careers@antixxtechhub.com",
+//     pass: "2]6!NK{lo3SJ",
+//   },
+// });
 
 // Send email function
-const sendEmailVa = (to, subject, text,attachments) => {
-  const mailOptions = {
-    from: 'careers@antixxtechhub.com',
-    to,
-    subject,
-    text,
-    attachments
-  };
+// const sendEmailVa = (to, subject, text,attachments) => {
+//   const mailOptions = {
+//     from: 'careers@antixxtechhub.com',
+//     to,
+//     subject,
+//     text,
+//     attachments
+//   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-};
+//   transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log('Email sent: ' + info.response);
+//     }
+//   });
+// };
 
 // Example usage
-app.get('/send-email', (req, res) => {
-  const to = 'careers@antixxtechhub.com';
-  const subject = 'Test email';
-  const text = 'This is a test email sent using nodemailer and sendgrid';
-const attachments = [{   // utf-8 string as an attachment
-  name: "Demo.pdf",
-  lastModified: 1698039160185,
-  lastModifiedDate:" Mon Oct 23 2023 11:02:40 GMT+0530 (India Standard Time)",
-  webkitRelativePath: "",
-  size: 4024175,
-  type: "application/pdf",
-},]
-  sendEmailVa(to, subject, text,attachments);
+app.get('/send-email', async(req, res) => {
+  try {
+    // const { name, email, message } = req.body;
 
-  res.send('Email sent successfully');
+    const transporter = nodemailer.createTransport({
+      port: 465,
+      host: "mail.antixxtechhub.com",
+      auth: {
+        user: "careers@antixxtechhub.com",
+        pass: "2]6!NK{lo3SJ",
+      },
+      secure: true,
+    });
+
+    const mailData = {
+      from: "careers@antixxtechhub.com",
+      to: "shrimalavekar@gmail.com",
+      subject: "Message From sfdsf",
+      text: "sdfsdffsdfds",
+    };
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(mailData, (err, info) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          resolve(info);
+          res.status(200).json({ message: "Email sent" ,info});
+        }
+      });
+    });
+
+
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 app.listen(port, () => {
