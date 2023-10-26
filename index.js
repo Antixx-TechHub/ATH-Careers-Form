@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 const port =process.env.PORT || 5001;
 
 const corsOptions ={
-  origin:['https://d1jyjc4ib07tgv.cloudfront.net','http://d1jyjc4ib07tgv.cloudfront.net'], 
+  origin:['http://localhost:3000', 'https://antixxtechhub.com'], 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
