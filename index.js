@@ -65,6 +65,8 @@ app.get('/send-email', async(req, res) => {
         pass: "2]6!NK{lo3SJ",
       },
       secure: true,
+      tls: {rejectUnauthorized: false},
+      debug:true
     });
 
     const mailData = {
