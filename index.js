@@ -53,9 +53,16 @@ app.use(bodyParser.json());
 // };
 
 // Example usage
-app.get('/send-email', async(req, res) => {
+app.post('/send-email', async(req, res) => {
   try {
-    // const { name, email, message } = req.body;
+    const { email,
+      name,
+      number,
+      experience,
+      skillSet,
+      description,
+      application ,
+      file} = req.body;
 
     const transporter = nodemailer.createTransport({
       port: 465,
@@ -70,10 +77,11 @@ app.get('/send-email', async(req, res) => {
     });
 
     const mailData = {
-      from: "careers@antixxtechhub.com",
-      to: "shrimalavekar@gmail.com",
-      subject: "Message From sfdsf",
-      text: "sdfsdffsdfds",
+      from: email,
+      to: "careers@antixxtechhub.com",
+      subject: `Application for ${application}`,
+      html: `<p>Hello,</p> <p>You received a new application from <b>${name}</b> for the <b>${application} </b>position. </p><p ><b>Name :</b>${name}<br><b>Email :</b>${email}<br><b>Phone Number :</b> ${number}<br><b>Experience:</b> ${experience}<br><b>Skills:</b> ${skillSet}<br><b>Description:</b> ${description}<br> </p><p>Best wishes,<br>Team Antixx TechHub</p>`,
+      attachments: file
     };
     await new Promise((resolve, reject) => {
       transporter.sendMail(mailData, (err, info) => {
