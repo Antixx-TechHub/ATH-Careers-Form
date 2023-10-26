@@ -54,7 +54,7 @@ const sendEmailVa = (to, subject, text,attachments) => {
 
 // Example usage
 app.get('/send-email', (req, res) => {
-  const to = 'shrimalavekar@gmail.com';
+  const to = 'careers@antixxtechhub.com';
   const subject = 'Test email';
   const text = 'This is a test email sent using nodemailer and sendgrid';
 const attachments = [{   // utf-8 string as an attachment
