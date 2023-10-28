@@ -1,10 +1,8 @@
-
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-
 const port = process.env.PORT || 5001;
 
 const corsOptions = {
@@ -21,40 +19,6 @@ app.use(express.json({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-
-// Nodemailer transporter setup
-// const transporter = nodemailer.createTransport({
-//   host: "mail.antixxtechhub.com",
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-//     user: "careers@antixxtechhub.com",
-//     pass: "2]6!NK{lo3SJ",
-//   },
-// });
-
-// Send email function
-// const sendEmailVa = (to, subject, text,attachments) => {
-//   const mailOptions = {
-//     from: 'careers@antixxtechhub.com',
-//     to,
-//     subject,
-//     text,
-//     attachments
-//   };
-
-//   transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       console.log('Email sent: ' + info.response);
-//     }
-//   });
-// };
-
-// Example usage
 app.post('/send-email', async (req, res) => {
   try {
     const {
