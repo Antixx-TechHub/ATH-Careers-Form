@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 
 // Import and use routes
-const AllRoutes = require("./routes/allRoutes");
+const AllRoutes = require("./src/routes/allRoutes");
 app.use("/", AllRoutes);
 
 
