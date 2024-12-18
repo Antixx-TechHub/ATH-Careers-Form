@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
     host: "mail.antixxtechhub.com",
     auth: {
       user: "careers@antixxtechhub.com",
-      pass: "2]6!NK{lo3SJ",
+      pass: "j_1vQBEg-{xF",
     },
     secure: true,
     tls: { rejectUnauthorized: false },
